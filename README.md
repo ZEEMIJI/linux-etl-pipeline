@@ -57,7 +57,7 @@ The ETL script uses the `CSV_URL` environment variable to locate the source data
 Copy the CSV download URL from the **Data Source** section below and set it in your terminal:
 
 ```bash
-export CSV_URL="PASTE-THE-CSV-URL-HERE"
+export CSV_URL="(https://www.stats.govt.nz/assets/Uploads/Annual-enterprise-survey/Annual-enterprise-survey-2023-financial-year-provisional/Download-data/annual-enterprise-survey-2023-financial-year-provisional.csv)"
 ```
 
 ### 3. Run the ETL script
@@ -79,7 +79,7 @@ The dataset used in this project is the Annual Enterprise Survey 2023 from Stats
 
 **CSV Download:**
 
-[Annual Enterprise Survey 2023 CSV](PASTE-THE-CSV-URL-HERE)
+[Annual Enterprise Survey 2023 CSV]https://www.stats.govt.nz/assets/Uploads/Annual-enterprise-survey/Annual-enterprise-survey-2023-financial-year-provisional/Download-data/annual-enterprise-survey-2023-financial-year-provisional.csv
 
 
 This project was created as part of my data engineering learning journey.
