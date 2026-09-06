@@ -41,16 +41,45 @@ The ETL script is scheduled to run every day at midnight:
 ```
 
 
+## How to Run
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/ZEEMIJI/linux-etl-pipeline.git
+cd linux-etl-pipeline
+```
+
+### 2. Set the CSV URL as an environment variable
+
+The ETL script uses the `CSV_URL` environment variable to locate the source dataset.
+
+Copy the CSV download URL from the **Data Source** section below and set it in your terminal:
+
+```bash
+export CSV_URL="PASTE-THE-CSV-URL-HERE"
+```
+
+### 3. Run the ETL script
+
+```bash
+bash scripts/etl.sh
+```
+
+The script will:
+
+* Download the raw CSV into the `raw` folder
+* Transform the required columns
+* Save the transformed data into the `Transformed` folder
+* Copy the transformed file into the `Gold` folder
+
 ## Data Source
 
-The CSV dataset used in this project is from Stats NZ.
+The dataset used in this project is the Annual Enterprise Survey 2023 from Stats NZ.
 
 **CSV Download:**
-[Download the Annual Enterprise Survey 2023 CSV](https://www.stats.govt.nz/assets/Uploads/Annual-enterprise-survey/Annual-enterprise-survey-2023-financial-year-provisional/Download-data/annual-enterprise-survey-2023-financial-year-provisional.csv)
 
-## How to Run
-From the project directory, run:
+[Annual Enterprise Survey 2023 CSV](PASTE-THE-CSV-URL-HERE)
 
-bash scripts/etl.sh
 
 This project was created as part of my data engineering learning journey.
