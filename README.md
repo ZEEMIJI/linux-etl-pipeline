@@ -39,8 +39,16 @@ The ETL script is scheduled to run every day at midnight:
 ```text
 0 0 * * *
 ```
-## How to Run
 
+
+## Data Source
+
+The CSV dataset used in this project is from Stats NZ.
+
+**CSV Download:**
+[Download the Annual Enterprise Survey 2023 CSV](https://www.stats.govt.nz/assets/Uploads/Annual-enterprise-survey/Annual-enterprise-survey-2023-financial-year-provisional/Download-data/annual-enterprise-survey-2023-financial-year-provisional.csv)
+
+## How to Run
 From the project directory, run:
 
 bash scripts/etl.sh
