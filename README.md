@@ -1,22 +1,36 @@
 # Linux ETL Pipeline
 
-A simple data engineering project using **Bash, Linux, and Git**.
+A simple data engineering project using **Bash, AWK, Wget, Git, and Cron**.
 
-## What this project does
+## What This Project Does
 
-This project demonstrates a basic ETL (Extract, Transform, Load) pipeline using Bash.
+This project contains two Bash scripts:
 
-* **Extract:** Downloads an Annual Enterprise Survey CSV dataset.
-* **Transform:** Selects the required columns and renames them.
-* **Load:** Saves the transformed data into a Gold folder.
-* **Automation:** Uses a cron job to run the ETL script every day at **12:00 AM**.
+### 1. ETL Pipeline
+
+The `etl.sh` script:
+
+* Downloads the Annual Enterprise Survey 2023 CSV dataset.
+* Saves the raw data in `raw/`.
+* Uses AWK to select and rename columns.
+* Saves the transformed data in `Transformed/`.
+* Copies the final data into `Gold/`.
+
+### 2. CSV and JSON File Management
+
+The `move_files.sh` script:
+
+* Searches the `source_files/` folder for CSV and JSON files.
+* Moves the files into `json_and_CSV/`.
+* Creates the destination folder if it does not already exist.
+* Displays a message if no CSV or JSON files are found.
 
 ## Tools Used
 
 * Bash
-* Linux/macOS Terminal
 * AWK
 * Wget
+* Linux/macOS Terminal
 * Git & GitHub
 * Cron
 
@@ -27,59 +41,97 @@ linux-etl-pipeline/
 ├── raw/
 ├── Transformed/
 ├── Gold/
+├── source_files/
+├── json_and_CSV/
 ├── scripts/
-│   └── etl.sh
+│   ├── etl.sh
+│   └── move_files.sh
 └── .gitignore
+```
+
+## ETL Data Flow
+
+```text
+Stats NZ
+   ↓
+raw/
+   ↓
+Transformed/
+   ↓
+Gold/
+```
+
+## CSV and JSON File Flow
+
+```text
+source_files/
+      ↓
+move_files.sh
+      ↓
+json_and_CSV/
 ```
 
 ## Cron Schedule
 
-The ETL script is scheduled to run every day at midnight:
+The ETL script is scheduled to run every day at **12:00 AM**.
 
 ```text
 0 0 * * *
 ```
 
-
 ## How to Run
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/ZEEMIJI/linux-etl-pipeline.git
 cd linux-etl-pipeline
 ```
 
-### 2. Set the CSV URL as an environment variable
+### 2. Set the CSV URL
 
-The ETL script uses the `CSV_URL` environment variable to locate the source dataset.
-
-Copy the CSV download URL from the **Data Source** section below and set it in your terminal:
+The ETL script uses the `CSV_URL` environment variable.
 
 ```bash
 export CSV_URL="https://www.stats.govt.nz/assets/Uploads/Annual-enterprise-survey/Annual-enterprise-survey-2023-financial-year-provisional/Download-data/annual-enterprise-survey-2023-financial-year-provisional.csv"
 ```
 
-### 3. Run the ETL script
+### 3. Run the ETL Script
 
 ```bash
 bash scripts/etl.sh
 ```
 
-The script will:
+### 4. Run the CSV and JSON File-Moving Script
+Place one or more .csv and/or .json files in the source_files/ folder, or edit the source path in the script to point to the folder you want to organise.
 
-* Download the raw CSV into the `raw` folder
-* Transform the required columns
-* Save the transformed data into the `Transformed` folder
-* Copy the transformed file into the `Gold` folder
+```bash
+bash scripts/move_files.sh
+```
+
+The files will be moved into:
+
+```text
+json_and_CSV/
+```
 
 ## Data Source
 
-The dataset used in this project is the Annual Enterprise Survey 2023 from Stats NZ.
+**Stats NZ — Annual Enterprise Survey 2023**
 
-**CSV Download:**
+[Annual Enterprise Survey 2023 CSV](https://www.stats.govt.nz/assets/Uploads/Annual-enterprise-survey/Annual-enterprise-survey-2023-financial-year-provisional/Download-data/annual-enterprise-survey-2023-financial-year-provisional.csv)
 
-[Annual Enterprise Survey 2023 CSV] https://www.stats.govt.nz/assets/Uploads/Annual-enterprise-survey/Annual-enterprise-survey-2023-financial-year-provisional/Download-data/annual-enterprise-survey-2023-financial-year-provisional.csv
+## Learning Outcomes
 
+This project provided practical experience with:
 
-This project was created as part of my data engineering learning journey.
+* Bash scripting
+* AWK data transformation
+* File management with `find` and `mv`
+* Environment variables
+* Cron scheduling
+* Git and GitHub
+
+---
+
+Created as part of my **data engineering learning journey**.
